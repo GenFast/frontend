@@ -31,7 +31,7 @@ const ChatInterface = ({ messages, sendMessage, isLoading }) => {
       <div className="flex-grow overflow-auto mb-4 p-4 bg-gray-100 rounded-lg">
         {messages.map((message, index) => (
           <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
-            <div className={`inline-block p-2 rounded-lg max-w-[66%] ${message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>
+            <div className={`inline-block p-2 rounded-lg max-w-[90%] md:max-w-[66%] ${message.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-300'}`}>
               <ReactMarkdown
                 components={{
                   code({ node, inline, className, children, ...props }) {
