@@ -1,4 +1,3 @@
-// components/Navbar.js
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -8,8 +7,8 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const menuVariants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
+    open: { opacity: 1, height: "auto" },
+    closed: { opacity: 0, height: 0 },
   };
 
   return (
@@ -39,10 +38,11 @@ const Navbar = () => {
       </div>
 
       <motion.div 
-        className="md:hidden"
+        className="md:hidden overflow-hidden"
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
+        transition={{ duration: 0.3 }}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a href="#" className="block px-3 py-2 rounded-md text-base font-medium">Home</a>
