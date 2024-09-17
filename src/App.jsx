@@ -10,28 +10,26 @@ const App = () => {
   const sendMessage = async (content) => {
     setMessages(prevMessages => [...prevMessages, { role: 'user', content }]);
 
-    const options = {
-      method: 'POST',
-      url: 'https://chatgpt-42.p.rapidapi.com/conversationllama3',
-      headers: {
-        'x-rapidapi-key': '51a9934eb8mshcadd70519921505p18ac4fjsnb3da1e3bc021',
-        'x-rapidapi-host': 'chatgpt-42.p.rapidapi.com',
-        'Content-Type': 'application/json'
-      },
-      data: {
-        messages: [
-          ...messages,
-          { role: 'user', content }
-        ],
-        web_access: false
-      }
+    const url = "https://chatgpt-best-price.p.rapidapi.com/v1/chat/completions";
+    const payload = {
+      model: "gpt-3.5-turbo",
+      messages: [
+        ...messages,
+        { role: "user", content }
+      ]
+    };
+    const headers = {
+      "content-type": "application/json",
+      "X-RapidAPI-Key": "c6150aa0fbmshc0a1461851bd7ecp100c48jsnac068272b7e6",
+      "X-RapidAPI-Host": "chatgpt-best-price.p.rapidapi.com"
     };
 
     try {
-      const response = await axios.request(options);
+      const response = await axios.post(url, payload, { headers });
+      const assistantResponse = response.data.choices[0].message.content;
       setMessages(prevMessages => [
         ...prevMessages,
-        { role: 'assistant', content: response.data.result }
+        { role: 'assistant', content: assistantResponse }
       ]);
     } catch (error) {
       console.error('Error calling API:', error);
